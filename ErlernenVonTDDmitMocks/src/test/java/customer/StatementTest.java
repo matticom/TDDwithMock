@@ -73,4 +73,33 @@ public class StatementTest {
 		controlStatement.verify();
 		controlStatement.reset();
 	}
+
+	public void testStatement() {
+		MockControl controlPrinter = MockControl.createStrictControl(IPrinter.class);
+		IPrinter mockPrinter = (IPrinter) controlPrinter.getMock();
+		mockPrinter.print("Rental records for Zing Zang Zong");
+		mockPrinter.crlf();
+		mockPrinter.tab();
+		mockPrinter.print("Bladerunner");
+		mockPrinter.tab();
+		mockPrinter.print("1,50");
+		mockPrinter.crlf();
+		mockPrinter.tab();
+		mockPrinter.print("Taxi Driver");
+		mockPrinter.tab();
+		mockPrinter.print("4,50");
+		mockPrinter.crlf();
+		mockPrinter.print("Amount owed is 6,00");
+		mockPrinter.crlf();
+		mockPrinter.cutPaper();
+		controlPrinter.replay();
+		Statement statement = new Statement(mockPrinter);
+		statement.printCustomerName("Zing Zang Zong");
+		statement.printMovieTitle("Bladerunner");
+		statement.printMovieCharge(new Euro(1.50));
+		statement.printMovieTitle("Taxi Driver");
+		statement.printMovieCharge(new Euro(4.50));
+		statement.printTotalCharge();
+		controlPrinter.verify();
+	}
 }
