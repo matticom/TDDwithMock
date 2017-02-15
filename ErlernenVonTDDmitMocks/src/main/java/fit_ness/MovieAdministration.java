@@ -1,18 +1,17 @@
 package fit_ness;
 
+//alltests.html alltests-results.html
 public class MovieAdministration extends fit.Fixture {
-	private VideoStore store = new VideoStore();
-	
-	private NumberSequence sequence = new NumberSequence();
+	private VideoStore store = SystemUnderTest.instance();
 	private String movieTitle;
 	private String priceCategory;
 	private int movieNumber;
 	
 	public void newMovie() {
-		movieNumber = sequence.nextNumber();
+		movieNumber = store.nextMovieNumber();
 	}
 
-	public void save() {
+	public void save() throws MovieNumberAlreadyInUseException {
 		store.newMovie(movieNumber, movieTitle, priceCategory);
 	}
 
