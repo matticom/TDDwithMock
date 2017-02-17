@@ -1,7 +1,7 @@
 package fit_ness;
 
 public class MovieEntry extends fit.ColumnFixture {
-	private VideoStore store = SystemUnderTest.instance();
+	private VideoStore store = new VideoStore();//SystemUnderTest.instance();
 	public int number;
 	public String title;
 	public String category;

@@ -21,4 +21,15 @@ public class Rental {
 		return movie.getCharge(daysRented);
 	}
 
+	public int getDaysRented() {
+		return daysRented;
+	}
+
+	public int getMovieNumber() {
+		return movie.getNumber();
+	}
+
+	public Movie getMovie() {
+		return movie;
+	}
 }

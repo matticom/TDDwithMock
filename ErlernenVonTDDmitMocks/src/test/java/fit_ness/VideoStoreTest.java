@@ -1,6 +1,9 @@
 package fit_ness;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+
 import org.junit.Test;
 
 public class VideoStoreTest {
@@ -58,6 +61,29 @@ public class VideoStoreTest {
 		} catch (MovieNumberAlreadyInUseException expected) {
 			assertSame(one, store.getMovie(1));
 			assertEquals(1, expected.getMovieNumber());
-		} catch (Exception ex) {}
+		} catch (Exception ex) {
+		}
+	}
+
+	@Test
+	public void testChargeOfRental() throws Exception {
+		VideoStore store = new VideoStore();
+		store.newMovie(2, "Bla", "new release");
+		Rental rental = store.addRental(2, 3);
+		assertEquals(3.75, rental.getCharge().getAmount(), 0.01);
+	}
+
+	@Test
+	public void testRentalItem() throws Exception {
+		VideoStore store = new VideoStore();
+		store.newMovie(1, "Koyaanisqatsi", "new release");
+		store.addRental(1, 1);
+		store.addRental(1, 3);
+		List<RentalItem> items = store.allRentalItems();
+		assertEquals(1, items.size());
+		RentalItem item = items.get(0);
+		assertEquals(1, item.movieNumber);
+		assertEquals("Koyaanisqatsi", item.movieTitle);
+		assertEquals(4, item.totalDaysRented);
 	}
 }

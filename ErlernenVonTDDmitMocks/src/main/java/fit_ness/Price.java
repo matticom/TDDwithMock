@@ -26,6 +26,6 @@ public class Price implements IPrice {
 	}
 	
 	public static Price getPrice(String category) {
-		return "regular price".equals(category) ? (Price)Price.REGULAR : null;
+		return "regular price".equals(category) ? (Price)Price.REGULAR : (Price)Price.NEWRELEASE;
 	}
 }
