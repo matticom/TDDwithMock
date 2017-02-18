@@ -7,6 +7,8 @@ public class MovieEntry extends fit.ColumnFixture {
 	public String category;
 
 	public boolean isValid() {
+		summary.put("java version", System.getProperty("java.version"));
+		summary.put("operating system", System.getProperty("os.name"));
 		try {
 			store.newMovie(number, title, category);
 			return true;

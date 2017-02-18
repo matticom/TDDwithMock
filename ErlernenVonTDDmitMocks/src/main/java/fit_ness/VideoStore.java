@@ -14,7 +14,7 @@ public class VideoStore {
 		if (getMovie(number) != null)
 			throw new MovieNumberAlreadyInUseException(number);
 		Price price = Price.getPrice(category);
-		Movie movie = new Movie(sequence.nextNumber(), title, price);
+		Movie movie = new Movie(number, title, price);
 		Integer key = new Integer(number);
 		movies.put(key, movie);
 		return movie;

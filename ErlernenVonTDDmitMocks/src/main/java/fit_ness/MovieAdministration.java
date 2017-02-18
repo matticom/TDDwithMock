@@ -1,6 +1,7 @@
 package fit_ness;
 
 //alltests.html alltests-results.html
+//Documents/AllFiles.html Reports/alltest-results.html --> Parameter für FileRunner.class
 public class MovieAdministration extends fit.Fixture {
 	private VideoStore store = SystemUnderTest.instance();
 	private String movieTitle;
